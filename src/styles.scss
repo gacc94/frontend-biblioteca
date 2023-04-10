@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@import "src/assets/scss/fonts.scss";
+
+* {
+    font-family: "Signika", sans-serif !important;
+    font-weight: 300;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+}
