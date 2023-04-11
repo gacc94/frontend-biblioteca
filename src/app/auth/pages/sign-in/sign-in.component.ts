@@ -16,16 +16,16 @@ export class SignInComponent {
     ngOnChanges(){
         console.log('ngOnChanges: => ',this._title)
     }
-    ngAfterViewInit(){
-        console.log('ngAfterViewInit: => ',this._title)
-    }
-    ngAfterContentInit(){
-        console.log('ngAfterContentInit: => ',this._title)
-    }
-    ngDoCheck(){
-        console.log('ngDoCheck: => ',this._title)
-    }
-    ngOnDestroy(){
-        console.log('ngOnDestroy: => ',this._title)
-    }
+    // ngAfterViewInit(){
+    //     console.log('ngAfterViewInit: => ',this._title)
+    // }
+    // ngAfterContentInit(){
+    //     console.log('ngAfterContentInit: => ',this._title)
+    // }
+    // ngDoCheck(){
+    //     console.log('ngDoCheck: => ',this._title)
+    // }
+    // ngOnDestroy(){
+    //     console.log('ngOnDestroy: => ',this._title)
+    // }
 }

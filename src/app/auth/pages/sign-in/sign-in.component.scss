@@ -8,10 +8,11 @@ mat-grid-tile {
     min-height: 100%;
 }
 .sign-in{
-    padding: 2rem 1.5rem;
+    padding: 2.5rem 2rem;
     max-width: 80%;
     width: 32rem;
-    box-shadow: 0 0 0 .5rem rgba(0 0 0 / .8);
+    box-shadow: 0 .45rem 1rem rgba(0 0 0 / .35);
+    border-radius: .5rem;
 }
 mat-form-field{
     width: 100%;

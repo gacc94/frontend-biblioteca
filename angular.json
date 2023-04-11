@@ -37,21 +37,21 @@
                         "scripts": []
                     },
                     "configurations": {
-                        "production": {
-                            "budgets": [
-                                {
-                                    "type": "initial",
-                                    "maximumWarning": "500kb",
-                                    "maximumError": "1mb"
-                                },
-                                {
-                                    "type": "anyComponentStyle",
-                                    "maximumWarning": "2kb",
-                                    "maximumError": "4kb"
-                                }
-                            ],
-                            "outputHashing": "all"
-                        },
+//                        "production": {
+//                            "budgets": [
+//                                {
+//                                    "type": "initial",
+//                                    "maximumWarning": "500kb",
+//                                    "maximumError": "1mb"
+//                                },
+//                                {
+//                                    "type": "anyComponentStyle",
+//                                    "maximumWarning": "2kb",
+//                                    "maximumError": "4kb"
+//                                }
+//                            ],
+//                            "outputHashing": "all"
+//                        },
                         "development": {
                             "buildOptimizer": false,
                             "optimization": false,
@@ -62,24 +62,73 @@
                             "fileReplacements": [
                                 {
                                     "replace": "src/environments/environment.ts",
-                                    "with": "src/environments/environment.development.ts"
+                                    "with": "src/environments/environment.dev.ts"
+                                }
+                            ]
+                        },
+                        "qa": {
+                            "buildOptimizer": false,
+                            "optimization": false,
+                            "vendorChunk": true,
+                            "extractLicenses": false,
+                            "sourceMap": true,
+                            "namedChunks": true,
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.qa.ts"
+                                }
+                            ]
+                        },
+                        "production": {
+                            "buildOptimizer": false,
+                            "optimization": false,
+                            "vendorChunk": true,
+                            "extractLicenses": false,
+                            "sourceMap": true,
+                            "namedChunks": true,
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                }
+                            ]
+                        },
+                        "local": {
+                            "buildOptimizer": false,
+                            "optimization": false,
+                            "vendorChunk": true,
+                            "extractLicenses": false,
+                            "sourceMap": true,
+                            "namedChunks": true,
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.ts"
                                 }
                             ]
                         }
                     },
-                    "defaultConfiguration": "production"
+                    "defaultConfiguration": "local"
                 },
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "configurations": {
-                        "production": {
-                            "browserTarget": "bliblioteca-frontend:build:production"
+                        "prod": {
+                            "browserTarget": "bliblioteca-frontend:build:prod"
                         },
                         "development": {
                             "browserTarget": "bliblioteca-frontend:build:development"
+                        },
+                        "qa": {
+                            "browserTarget": "bliblioteca-frontend:build:qa"
+                        },
+                        "local": {
+                            "browserTarget": "bliblioteca-frontend:build:local"
                         }
+
                     },
-                    "defaultConfiguration": "development"
+                    "defaultConfiguration": "local"
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
