@@ -18,6 +18,10 @@ const routes: Routes = [
         path: 'security',
         loadChildren: () => import('./../security/security.module').then(m=>m.SecurityModule),
     },
+    {
+        path: 'dashboard',
+        loadChildren: () => import('./../dashboard/dashboard.module').then(m=>m.DashboardModule),
+    }
 ];
 
 @NgModule({
