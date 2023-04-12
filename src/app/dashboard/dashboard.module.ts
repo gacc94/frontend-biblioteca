@@ -14,26 +14,28 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { CardComponent } from './components/card/card.component';
+import {MaterialModule} from "../material/material.module";
 
 
 @NgModule({
-  declarations: [
-    DashboardLayoutComponent,
-    DashboardMainComponent,
-    CardComponent,
-  ],
-  imports: [
-    CommonModule,
-    DashboardRoutingModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatGridListModule,
-    MatCardModule,
-    MatMenuModule
-  ]
+    declarations: [
+        DashboardLayoutComponent,
+        DashboardMainComponent,
+        CardComponent,
+    ],
+    imports: [
+        CommonModule,
+        DashboardRoutingModule,
+        LayoutModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatSidenavModule,
+        MatIconModule,
+        MatListModule,
+        MatGridListModule,
+        MatCardModule,
+        MatMenuModule,
+        MaterialModule,
+    ]
 })
 export class DashboardModule { }

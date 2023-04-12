@@ -1,8 +1,27 @@
+<!--<div class="grid-container">-->
+<!--    <h1 class="mat-h1">Dashboard</h1>-->
+<!--    <mat-grid-list cols="4" rowHeight="240px" >-->
+<!--        <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">-->
+<!--            <app-card [title]="card.title"></app-card>-->
+<!--        </mat-grid-tile>-->
+<!--    </mat-grid-list>-->
+<!--</div>-->
+
 <div class="grid-container">
     <h1 class="mat-h1">Dashboard</h1>
-    <mat-grid-list cols="4" rowHeight="240px" >
-        <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-            <app-card [title]="card.title"></app-card>
+    <mat-grid-list [cols]="values.columns" rowHeight="200px">
+        <mat-grid-tile *ngFor="let i of [1, 2, 3, 4]" [colspan]="values.miniCard.cols"
+                       [rowspan]="values.miniCard.rows">
+            <app-card title="Card {{i}}"><div>Mini Card Content Here</div></app-card>
+        </mat-grid-tile>
+        Charts
+        <mat-grid-tile *ngFor="let i of [5, 6, 7, 8]" [colspan]="values.chart.cols"
+                       [rowspan]="values.chart.rows">
+            <app-card title="Card {{i}}"><div>Chart Content Here</div></app-card>
+        </mat-grid-tile>
+        <!--Table-->
+        <mat-grid-tile [colspan]="values.table.cols" [rowspan]="values.table.rows">
+            <app-card title="Card 9"><div>Table Content Here</div></app-card>
         </mat-grid-tile>
     </mat-grid-list>
 </div>
