@@ -4,6 +4,7 @@ import {BookCatalogLayoutComponent} from "./layout/book-catalog-layout/book-cata
 import {BookComponent} from "./pages/book/book.component";
 import {AuthorComponent} from "./pages/author/author.component";
 import {EditorialComponent} from "./pages/editorial/editorial.component";
+import {TemplateDriverFormsComponent} from "./pages/template-driver-forms/template-driver-forms.component";
 
 const routes: Routes = [
     {
@@ -23,6 +24,11 @@ const routes: Routes = [
                 path: 'editorial',
                 title: 'Biblioteca - editorial',
                 component: EditorialComponent,
+            },
+            {
+                path: 'template-forms',
+                title: 'Template - forms',
+                component: TemplateDriverFormsComponent,
             }
         ]
     }

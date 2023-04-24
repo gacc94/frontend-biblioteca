@@ -12,6 +12,7 @@ import {SharedModule} from "@shared/shared.module";
 import {MaterialModule} from "../material/material.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FlexLayoutModule, FlexModule} from "@angular/flex-layout";
+import { TemplateDriverFormsComponent } from './pages/template-driver-forms/template-driver-forms.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import {FlexLayoutModule, FlexModule} from "@angular/flex-layout";
         AuthorComponent,
         EditorialComponent,
         ListEditorialComponent,
-        AddEditorialComponent
+        AddEditorialComponent,
+        TemplateDriverFormsComponent
     ],
     imports: [
         CommonModule,

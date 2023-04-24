@@ -24,6 +24,7 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatListModule} from "@angular/material/list";
+import {MatSidenavModule} from "@angular/material/sidenav";
 
 @NgModule({
     declarations: [],
@@ -54,6 +55,7 @@ import {MatListModule} from "@angular/material/list";
         MatSnackBarModule,
         MatListModule,
         MatTableModule,
+        MatSidenavModule,
     ],
 })
 export class MaterialModule { }

@@ -1,22 +1,48 @@
-<mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-        <mat-icon svgIcon="menu"></mat-icon>
-    </button>
-    <span>SysBiblioteca</span>
-    <button mat-button [matMenuTriggerFor]="menuCatalog">Catalogo de Libros</button>
-    <mat-menu #menuCatalog="matMenu">
-        <button mat-menu-item (click)="goToBook()">Administrar Libro</button>
-        <button mat-menu-item (click)="goToAuthor()">Administrar Autor</button>
-        <button mat-menu-item (click)="goToEditorial()">Administrar Editorial</button>
-    </mat-menu>
-    <button mat-button [matMenuTriggerFor]="menuSecurity">Seguridad</button>
-    <mat-menu #menuSecurity="matMenu">
-        <button mat-menu-item (click)="goToUser()">Administrar Usuario</button>
-        <button mat-menu-item (click)="goToRol()">Administrar Rol</button>
-    </mat-menu>
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-        <mat-icon svgIcon="sign_out">favorite</mat-icon>
-    </button>
-</mat-toolbar>
+<!--<mat-toolbar color="primary">-->
+<!--    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">-->
+<!--        <mat-icon svgIcon="menu"></mat-icon>-->
+<!--    </button>-->
+<!--    <span>SysBiblioteca</span>-->
+<!--    <button mat-button [matMenuTriggerFor]="menuCatalog">Catalogo de Libros</button>-->
+<!--    <mat-menu #menuCatalog="matMenu">-->
+<!--        <button mat-menu-item (click)="goToBook()">Administrar Libro</button>-->
+<!--        <button mat-menu-item (click)="goToAuthor()">Administrar Autor</button>-->
+<!--        <button mat-menu-item (click)="goToEditorial()">Administrar Editorial</button>-->
+<!--    </mat-menu>-->
+<!--    <button mat-button [matMenuTriggerFor]="menuSecurity">Seguridad</button>-->
+<!--    <mat-menu #menuSecurity="matMenu">-->
+<!--        <button mat-menu-item (click)="goToUser()">Administrar Usuario</button>-->
+<!--        <button mat-menu-item (click)="goToRol()">Administrar Rol</button>-->
+<!--    </mat-menu>-->
+<!--    <button mat-raised-button color="primary" [matMenuTriggerFor]="menuForms"> TDForms</button>-->
+<!--    <mat-menu #menuForms="matMenu">-->
+<!--        <button mat-menu-item (click)="goToTDForm()">Template Driver Form</button>-->
+<!--    </mat-menu>-->
+<!--    <span class="example-spacer"></span>-->
+<!--    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">-->
+<!--        <mat-icon svgIcon="sign_out">favorite</mat-icon>-->
+<!--    </button>-->
+<!--</mat-toolbar>-->
 
+<mat-drawer-container class="example-container" [hasBackdrop]="hasBackdrop.value">
+    <mat-drawer #drawer mode="side" opened>I'm a drawer</mat-drawer>
+    <mat-drawer-content>
+        <mat-form-field appearance="fill">
+            <mat-label>Sidenav mode</mat-label>
+            <mat-select #mode value="side">
+                <mat-option value="side">Side</mat-option>
+                <mat-option value="over">Over</mat-option>
+                <mat-option value="push">Push</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Has backdrop</mat-label>
+            <mat-select #hasBackdrop>
+                <mat-option>Unset</mat-option>
+                <mat-option [value]="true">True</mat-option>
+                <mat-option [value]="false">False</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button mat-raised-button (click)="drawer.toggle()">Toggle drawer</button>
+    </mat-drawer-content>
+</mat-drawer-container>

@@ -32,5 +32,8 @@ export class HeaderComponent {
         this._router.navigate(['security/rol'])
             .then();
     }
+    goToTDForm(): void{
+        this._router.navigate(['book-catalog/template-forms']).then()
+    }
 
 }
