@@ -28,6 +28,8 @@
             "@report*": ["src/app/report*"],
             "@security*": ["src/app/security*"],
             "@shared*": ["src/app/shared*"],
+            "@models*": ["src/app/models*"],
+            "@services*": ["src/app/services*"],
         },
         "lib": [
             "ES2022",

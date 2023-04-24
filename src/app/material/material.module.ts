@@ -38,7 +38,6 @@ import {MatListModule} from "@angular/material/list";
         MatCheckboxModule,
         MatDialogModule,
         MatTooltipModule,
-        MatTableModule,
         MatCardModule,
         MatRippleModule,
         MatProgressBarModule,
@@ -54,6 +53,7 @@ import {MatListModule} from "@angular/material/list";
         MatNativeDateModule,
         MatSnackBarModule,
         MatListModule,
+        MatTableModule,
     ],
 })
 export class MaterialModule { }

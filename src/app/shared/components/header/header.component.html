@@ -1,0 +1,22 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon svgIcon="menu"></mat-icon>
+    </button>
+    <span>SysBiblioteca</span>
+    <button mat-button [matMenuTriggerFor]="menuCatalog">Catalogo de Libros</button>
+    <mat-menu #menuCatalog="matMenu">
+        <button mat-menu-item (click)="goToBook()">Administrar Libro</button>
+        <button mat-menu-item (click)="goToAuthor()">Administrar Autor</button>
+        <button mat-menu-item (click)="goToEditorial()">Administrar Editorial</button>
+    </mat-menu>
+    <button mat-button [matMenuTriggerFor]="menuSecurity">Seguridad</button>
+    <mat-menu #menuSecurity="matMenu">
+        <button mat-menu-item (click)="goToUser()">Administrar Usuario</button>
+        <button mat-menu-item (click)="goToRol()">Administrar Rol</button>
+    </mat-menu>
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <mat-icon svgIcon="sign_out">favorite</mat-icon>
+    </button>
+</mat-toolbar>
+

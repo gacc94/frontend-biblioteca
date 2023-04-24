@@ -1,19 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {CoreLayoutComponent} from "@core/layout/core-layout/core-layout.component";
-import {BookCatalogLayoutComponent} from "./book-catalog/layout/book-catalog-layout/book-catalog-layout.component";
+import {CorePublicLayoutComponent} from "@core/layout/core-public-layout/core-public-layout.component";
 
 const routes: Routes = [
     {
         path: '',
-        component: CoreLayoutComponent,
+        // component: CorePublicLayoutComponent,
         loadChildren: () => import('./core/core.module').then((m)=>m.CoreModule)
     },
-    // {
-    //     path: 'book',
-    //     component: BookCatalogLayoutComponent,
-    //     loadChildren: () => import('./core/core.module').then((m)=>m.CoreModule)
-    // },
 ];
 
 @NgModule({
