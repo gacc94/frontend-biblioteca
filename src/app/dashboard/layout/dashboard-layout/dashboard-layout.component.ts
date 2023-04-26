@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable, Subject} from "rxjs";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {map, shareReplay} from "rxjs/operators";
 
@@ -9,6 +9,9 @@ import {map, shareReplay} from "rxjs/operators";
   styleUrls: ['./dashboard-layout.component.scss']
 })
 export class DashboardLayoutComponent {
+
+    mySubject$ = new Subject<string>();
+    myBehaviorSubject = new BehaviorSubject<string>('');
     menuItems = ['dashboard', 'sales', 'orders', 'customers', 'products'];
 
     isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -18,4 +21,7 @@ export class DashboardLayoutComponent {
         );
 
     constructor(private breakpointObserver: BreakpointObserver) {}
+
+
+
 }

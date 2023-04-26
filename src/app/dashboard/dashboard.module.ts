@@ -15,6 +15,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { CardComponent } from './components/card/card.component';
 import {MaterialModule} from "../material/material.module";
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import {MaterialModule} from "../material/material.module";
         DashboardLayoutComponent,
         DashboardMainComponent,
         CardComponent,
+        SidenavComponent,
     ],
     imports: [
         CommonModule,
