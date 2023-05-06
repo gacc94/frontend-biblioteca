@@ -28,27 +28,27 @@ export class TemplateDriverFormsComponent {
 
     }
     changeFile(event: Event):void {
-        console.log(event);
-        let inputFile = (<HTMLInputElement>event.target);
-        let listFile:FileList | null = inputFile.files
-        let nameFile;
-        let sizeFile;
-        const reader = new FileReader();
-        if(listFile){
-            nameFile = listFile[0].name;
-            sizeFile = `${Math.round(listFile[0].size / 1024)} MB`;
-            reader.readAsDataURL(listFile[0]);
-        }
-        this.captureFile.push(nameFile);
-        console.log({event, nameFile});
-        console.log(this.captureFile);
-        console.log({sizeFile})
-
-        reader.onload = (ev) => {
-            const preview = reader.result as string;
-            this.previewImage = preview;
-            console.log(ev.target?.result)
-        };
+        // console.log(event);
+        // let inputFile = (<HTMLInputElement>event.target);
+        // let listFile:FileList | null = inputFile.files
+        // let nameFile;
+        // let sizeFile;
+        // const reader = new FileReader();
+        // if(listFile){
+        //     nameFile = listFile[0].name;
+        //     sizeFile = `${Math.round(listFile[0].size / 1024)} MB`;
+        //     reader.readAsDataURL(listFile[0]);
+        // }
+        // this.captureFile.push(nameFile);
+        // console.log({event, nameFile});
+        // console.log(this.captureFile);
+        // console.log({sizeFile})
+        //
+        // reader.onload = (ev) => {
+        //     const preview = reader.result as string;
+        //     this.previewImage = preview;
+        //     console.log(ev.target?.result)
+        // };
 
     }
 }

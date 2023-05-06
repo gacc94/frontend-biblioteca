@@ -13,6 +13,7 @@ import {MaterialModule} from "../material/material.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FlexLayoutModule, FlexModule} from "@angular/flex-layout";
 import { TemplateDriverFormsComponent } from './pages/template-driver-forms/template-driver-forms.component';
+import { ReactiveFormsComponent } from './pages/reactive-forms/reactive-forms.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { TemplateDriverFormsComponent } from './pages/template-driver-forms/temp
         EditorialComponent,
         ListEditorialComponent,
         AddEditorialComponent,
-        TemplateDriverFormsComponent
+        TemplateDriverFormsComponent,
+        ReactiveFormsComponent
     ],
     imports: [
         CommonModule,

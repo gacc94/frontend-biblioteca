@@ -5,6 +5,7 @@ import {BookComponent} from "./pages/book/book.component";
 import {AuthorComponent} from "./pages/author/author.component";
 import {EditorialComponent} from "./pages/editorial/editorial.component";
 import {TemplateDriverFormsComponent} from "./pages/template-driver-forms/template-driver-forms.component";
+import {ReactiveFormsComponent} from "./pages/reactive-forms/reactive-forms.component";
 
 const routes: Routes = [
     {
@@ -29,6 +30,11 @@ const routes: Routes = [
                 path: 'template-forms',
                 title: 'Template - forms',
                 component: TemplateDriverFormsComponent,
+            },
+            {
+                path: 'reactive-forms',
+                title: 'Reactive-forms',
+                component: ReactiveFormsComponent,
             }
         ]
     }

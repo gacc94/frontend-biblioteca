@@ -1,0 +1,64 @@
+<div class="container mt-3">
+    <h1 class="my-3">Reactive Forms</h1>
+    <form (ngSubmit)="onSubmit($event)" [formGroup]="formReactive" >
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name"
+                   formControlName="name">
+            <div *ngIf="false">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" name="email"
+                   formControlName="email">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password"
+                   name="password" formControlName="password">
+        </div>
+
+        <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" class="form-control" id="confirmPassword"
+                   name="confirmPassword"
+                   formControlName="confirmPassword" >
+        </div>
+
+        <div class="form-group">
+            <label for="gender">Gender</label>
+            <select  class="form-control" id="gender"
+                     name="gender" formControlName="gender">
+                <option disabled value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="file">Subir Imagen</label>
+            <input type="file" class="form-control" id="file"
+                   name="file" formControlName="fileImage"
+                   (change)="changeFile($event)">
+        </div>
+        <img *ngIf="previewImage" style="object-fit: cover;" width="150px" height="150px" [src]="previewImage" alt="">
+        <div class="mt-1">
+            <button type="submit" class="btn btn-primary w-20" >
+                Submit
+            </button>
+        </div>
+    </form>
+</div>
+
+<div class="container">
+    {{ nameField.value }}
+    {{ passwordField.value }}
+    {{ emailField.value }}
+    <code>
+        <pre>{{ formReactive.value | json }}</pre>
+    </code>
+
+</div>

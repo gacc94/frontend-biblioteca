@@ -35,5 +35,7 @@ export class HeaderComponent {
     goToTDForm(): void{
         this._router.navigate(['book-catalog/template-forms']).then()
     }
-
+    goToRTForm(): void {
+        this._router.navigate(['book-catalog/reactive-forms']).then()
+    }
 }
