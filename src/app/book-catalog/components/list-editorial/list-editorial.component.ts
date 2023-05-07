@@ -9,31 +9,26 @@ import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
 import {HttpErrorResponse} from "@angular/common/http";
 import {BibliotecaConstansUtil} from "@utils/biblioteca-constans.util";
-
-export interface PeriodicElement {
-    id: number;
-    description: string;
-    // weight: number;
-    // symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-    {id: 1, description: 'Hydrogen'},
-    {id: 2, description: 'Helium'},
-    {id: 3, description: 'Lithium'},
-    {id: 4, description: 'Beryllium'},
-    {id: 5, description: 'Boron'},
-    {id: 6, description: 'Carbon'},
-    {id: 7, description: 'Nitrogen'},
-    {id: 8, description: 'Oxygen'},
-    {id: 9, description: 'Fluorine'},
-    {id: 10, description: 'Neon'},
-];
+import {CommonModule} from "@angular/common";
+import {SharedModule} from "@shared/shared.module";
+import {MaterialModule} from "@material/material.module";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FirstUpperPipe} from "../../../pipes/first-upper.pipe";
 
 @Component({
     selector: 'app-list-editorial',
     templateUrl: './list-editorial.component.html',
-    styleUrls: ['./list-editorial.component.scss']
+    styleUrls: ['./list-editorial.component.scss'],
+    standalone: true,
+    imports: [
+        CommonModule,
+        SharedModule,
+        MaterialModule,
+        ReactiveFormsModule,
+        FormsModule,
+        AddEditorialComponent,
+        FirstUpperPipe,
+    ],
 })
 export class ListEditorialComponent implements OnInit, AfterViewInit, OnDestroy {
 

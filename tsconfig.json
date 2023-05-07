@@ -32,6 +32,7 @@
             "@services*": ["src/app/services*"],
             "@utils*": ["src/app/utils*"],
             "@directives*": ["src/app/directives*"],
+            "@material*": ["src/app/material*"],
         },
         "lib": [
             "ES2022",

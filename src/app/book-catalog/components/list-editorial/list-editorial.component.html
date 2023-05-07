@@ -57,7 +57,7 @@
         <!-- Name Column -->
         <ng-container matColumnDef="name">
             <th mat-header-cell fxFlex="70%" *matHeaderCellDef> Name </th>
-            <td mat-cell fxFlex="70%" *matCellDef="let element"> {{element.name | titlecase}} </td>
+            <td mat-cell fxFlex="70%" *matCellDef="let element"> {{element.name | firstUpper}} </td>
         </ng-container>
 
         <!-- Symbol Column -->
