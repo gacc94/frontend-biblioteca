@@ -1,19 +1,20 @@
-import {AfterViewInit, Component, Inject, inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {AddEditorialComponent} from "../add-editorial/add-editorial.component";
-import {EditorialService} from "@services/api/editorial.service";
+import {EditorialService} from "@services/editorial.service";
 import {IEditorial, IEditorialDTO} from "@models/editorial.model";
-import {merge, Subscription, switchMap, tap} from "rxjs";
-import {MatSort} from "@angular/material/sort";
-import {MatPaginator} from "@angular/material/paginator";
+import {map, merge, startWith, Subscription, switchMap} from "rxjs";
+import {MatSort, Sort} from "@angular/material/sort";
+import {MatPaginator, PageEvent} from "@angular/material/paginator";
 import {HttpErrorResponse} from "@angular/common/http";
 import {BibliotecaConstansUtil} from "@utils/biblioteca-constans.util";
 import {CommonModule} from "@angular/common";
 import {SharedModule} from "@shared/shared.module";
 import {MaterialModule} from "@material/material.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {FirstUpperPipe} from "../../../pipes/first-upper.pipe";
+import {FirstUpperPipe} from "@pipes/first-upper.pipe";
+import {IPage} from "@models/page.model";
 
 @Component({
     selector: 'app-list-editorial',
@@ -60,17 +61,26 @@ export class ListEditorialComponent implements OnInit, AfterViewInit, OnDestroy 
         this.matSort.sortChange.subscribe(() => this._matPaginator.pageIndex = 0);
         merge(this.matSort.sortChange, this._matPaginator.page)
             .pipe(
-                switchMap((val) => {
+                startWith(),
+                switchMap((resp: Sort | PageEvent) => {
                     return this._editorialServ.findByName(
                         this.search ? this.search : '',
                         this._matPaginator.pageIndex,
                         this._matPaginator.pageSize
                     );
                 }),
+                map((data: IPage<IEditorial>) => {
+                    this.totalElement = data.totalElements;
+                    this._matPaginator.pageIndex = data.number;
+                    this._matPaginator.pageSize = data.size;
+                    return data.content;
+                })
             )
             .subscribe({
-                next: (value) => {
-                    console.log(value)
+                next: (data) => {
+                    this.listEditorial = data;
+
+                    console.log(data)
                 }
             });
 
@@ -111,16 +121,17 @@ export class ListEditorialComponent implements OnInit, AfterViewInit, OnDestroy 
         this.subscriptions.push(
             this._editorialServ.findByName(name, page, size)
                 .pipe(
-                    tap((val) => {
-                        console.log(val)
+                    map((resp: IPage<IEditorial>) => {
+                        this.totalElement = resp.totalElements;
+                        return resp.content;
                     }),
                 )
                 .subscribe({
-                    next: (resp) => {
-                        this.listEditorial = resp?.content;
-                        this.dataSource = new MatTableDataSource<IEditorial>(this.listEditorial);
-                        this.dataSource.paginator = this._matPaginator;
-                        this.totalElement = resp.totalElements;
+                    next: (resp: Array<IEditorial>)=> {
+                        this.listEditorial = resp;
+                        // this.dataSource = new MatTableDataSource<IEditorial>(this.listEditorial);
+                        // this.dataSource.paginator = this._matPaginator;
+                        // this.totalElement = resp.totalElements;
                     }
                 })
         )
@@ -178,10 +189,12 @@ export class ListEditorialComponent implements OnInit, AfterViewInit, OnDestroy 
     }
 
     public findById(id: number): void {
+        this.onClearListEditorial();
         this.subscriptions.push(
             this._editorialServ.findById(id)
                 .subscribe({
                     next: (data: IEditorial) => {
+                        this.listEditorial.push(data);
                         this.editorialDto = data;
                         this.onClearListEditorial();
                         this.listEditorial.push(this.editorialDto);

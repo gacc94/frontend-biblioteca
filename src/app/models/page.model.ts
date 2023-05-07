@@ -1,33 +1,28 @@
 
-export interface Page {
+export interface IPage<T> {
     number:           number;
     last:             boolean;
     size:             number;
     numberOfElements: number;
     totalPages:       number;
-    pageable:         Pageable;
-    sort:             Sort;
-    content:          Content[];
+    pageable:         IPageable;
+    sort:             ISort;
+    content:          T[];
     first:            boolean;
     totalElements:    number;
     empty:            boolean;
 }
 
-export interface Content {
-    name: string;
-    id:   number;
-}
-
-export interface Pageable {
+export interface IPageable {
     paged:      boolean;
     pageNumber: number;
     offset:     number;
     pageSize:   number;
     unpaged:    boolean;
-    sort:       Sort;
+    sort:       ISort;
 }
 
-export interface Sort {
+export interface ISort {
     unsorted: boolean;
     sorted:   boolean;
     empty:    boolean;

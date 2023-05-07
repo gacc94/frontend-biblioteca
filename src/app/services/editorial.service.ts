@@ -3,6 +3,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "@env/environment";
 import {IEditorial, IEditorialDTO} from "@models/editorial.model";
+import {IPage} from "@models/page.model";
 
 @Injectable({
     providedIn: 'root'
@@ -15,7 +16,7 @@ export class EditorialService {
         private _http: HttpClient,
     ) {}
 
-    public findByName(name: string, page: number, size: number): Observable<any> {
+    public findByName(name: string, page: number, size: number): Observable<IPage<IEditorial>> {
         let params = new HttpParams();
         params = params.append('name', name);
         params = params.append('page', page);
@@ -23,7 +24,7 @@ export class EditorialService {
         params = params.append('field', '');
         params = params.append('order', '');
 
-        return this._http.get(`${environment.urlBase}/editorials/editorial?` + params);
+        return this._http.get<IPage<IEditorial>>(`${environment.urlBase}/editorials/editorial?` + params);
     }
 
     public save(editorial: IEditorialDTO): Observable<any> {
@@ -36,4 +37,5 @@ export class EditorialService {
     public findById(id: number): Observable<IEditorial> {
         return this._http.get<IEditorial>(`${environment.urlBase}/editorials/${id}`);
     }
+
 }

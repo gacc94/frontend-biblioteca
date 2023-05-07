@@ -47,22 +47,22 @@
 </div>
 
 <div class="container mat-elevation-z8 mt-3" >
-    <table mat-table [dataSource]="dataSource" matSort>
+    <table mat-table [dataSource]="listEditorial" matSort>
         <!-- Position Column -->
         <ng-container matColumnDef="id">
-            <th mat-header-cell fxFlex="20%" *matHeaderCellDef> Id. </th>
-            <td mat-cell fxFlex="20%" *matCellDef="let element"> {{element.id}} </td>
+            <th mat-header-cell fxFlex="20%" *matHeaderCellDef> ID </th>
+            <td mat-cell fxFlex="20%" *matCellDef="let element"> {{element.id }} </td>
         </ng-container>
 
         <!-- Name Column -->
         <ng-container matColumnDef="name">
-            <th mat-header-cell fxFlex="70%" *matHeaderCellDef> Name </th>
+            <th mat-header-cell fxFlex="70%" *matHeaderCellDef> NAME </th>
             <td mat-cell fxFlex="70%" *matCellDef="let element"> {{element.name | firstUpper}} </td>
         </ng-container>
 
         <!-- Symbol Column -->
         <ng-container matColumnDef="selected">
-            <th mat-header-cell fxFlex="10%"  *matHeaderCellDef> Selected </th>
+            <th mat-header-cell fxFlex="10%"  *matHeaderCellDef> SELECTED </th>
             <td mat-cell fxFlex="10%" *matCellDef="let element">
                 <button mat-icon-button matTooltip="Editar"
                         (click)="create(element)">
