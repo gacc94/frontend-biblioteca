@@ -12,6 +12,7 @@ import {SharedModule} from "@shared/shared.module";
 import {MaterialModule} from "../material/material.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FlexLayoutModule, FlexModule} from "@angular/flex-layout";
+import {UpperDirective} from "@directives/input/upper.directive";
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {FlexLayoutModule, FlexModule} from "@angular/flex-layout";
         ReactiveFormsModule,
         FormsModule,
         FlexLayoutModule,
-        FlexModule
+        FlexModule,
+        UpperDirective,
     ]
 })
 export class BookCatalogModule { }

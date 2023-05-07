@@ -9,7 +9,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
     ],
     imports: [
         BrowserModule,
@@ -19,6 +19,8 @@ import {FlexLayoutModule} from "@angular/flex-layout";
         FlexLayoutModule
     ],
     providers: [],
+    exports: [
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

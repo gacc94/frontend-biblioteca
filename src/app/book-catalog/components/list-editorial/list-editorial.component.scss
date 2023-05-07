@@ -19,3 +19,20 @@ th {
 .mat-mdc-header-cell {
     background-color: #ff9800;
 }
+table.mat-mdc-table {
+    border-radius: .5rem;
+    overflow: hidden;
+}
+th.mat-mdc-header-cell{
+    background-color: #7E1F86;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+}
+td.mat-mdc-cell {
+    display: flex;
+    align-items: center;
+}
+mat-paginator {
+    background-color: #979595;
+}

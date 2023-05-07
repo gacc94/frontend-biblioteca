@@ -30,6 +30,8 @@
             "@shared*": ["src/app/shared*"],
             "@models*": ["src/app/models*"],
             "@services*": ["src/app/services*"],
+            "@utils*": ["src/app/utils*"],
+            "@directives*": ["src/app/directives*"],
         },
         "lib": [
             "ES2022",

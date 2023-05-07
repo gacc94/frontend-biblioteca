@@ -29,14 +29,17 @@
             </button>
         </div>
         <div class="mr-2">
-            <button mat-raised-button >
+            <button mat-raised-button matTooltip="Crear" (click)="onEraser()">
                 <mat-icon svgIcon="eraser"></mat-icon>
             </button>
         </div>
         <div class="w-100 mt-3">
             <mat-form-field>
                 <mat-label>Busqueda Avanzada</mat-label>
-                <input type="text" matInput placeholder="Busqueda avanzada">
+                <input type="search" matInput
+                       [(ngModel)]="search"
+                       placeholder="Busqueda avanzada"
+                       (keydown.enter)="onSearch($event)">
                 <mat-icon matIconPrefix svgIcon="search"></mat-icon>
             </mat-form-field>
         </div>
@@ -44,7 +47,7 @@
 </div>
 
 <div class="container mat-elevation-z8 mt-3" >
-    <table mat-table [dataSource]="dataSource">
+    <table mat-table [dataSource]="dataSource" matSort>
         <!-- Position Column -->
         <ng-container matColumnDef="id">
             <th mat-header-cell fxFlex="20%" *matHeaderCellDef> Id. </th>
@@ -52,9 +55,9 @@
         </ng-container>
 
         <!-- Name Column -->
-        <ng-container matColumnDef="description">
-            <th mat-header-cell fxFlex="70%" *matHeaderCellDef> Description </th>
-            <td mat-cell fxFlex="70%" *matCellDef="let element"> {{element.description}} </td>
+        <ng-container matColumnDef="name">
+            <th mat-header-cell fxFlex="70%" *matHeaderCellDef> Name </th>
+            <td mat-cell fxFlex="70%" *matCellDef="let element"> {{element.name | titlecase}} </td>
         </ng-container>
 
         <!-- Symbol Column -->
