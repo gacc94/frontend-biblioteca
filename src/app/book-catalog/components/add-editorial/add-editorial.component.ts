@@ -1,15 +1,18 @@
 import {AfterViewInit, ChangeDetectorRef, Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {BibliotecaConstansUtil} from "@utils/biblioteca-constans.util";
+import {UpperDirective} from "@directives/input/upper.directive";
 
 @Component({
   selector: 'app-add-editorial',
   templateUrl: './add-editorial.component.html',
-  styleUrls: ['./add-editorial.component.scss']
+  styleUrls: ['./add-editorial.component.scss'],
 })
 export class AddEditorialComponent implements OnInit,AfterViewInit{
 
     public formEditorial!: FormGroup;
+    private _action!: string;
 
     constructor(
         private _dialogRef: MatDialogRef<AddEditorialComponent>,
@@ -21,8 +24,8 @@ export class AddEditorialComponent implements OnInit,AfterViewInit{
     ngOnInit():void{
         console.log(this.data)
         this.formEditorial = this._fb.group({
-            id          : [''],
-            description : ['', [Validators.required]],
+            id   : [''],
+            name : ['', [Validators.required]],
         })
     }
 
@@ -42,13 +45,21 @@ export class AddEditorialComponent implements OnInit,AfterViewInit{
     }
 
     public onSubmit():void {
-        this._dialogRef.close(this.formEditorial.value)
+        this._action = this.formEditorial.value.id
+            ? BibliotecaConstansUtil.ACTION_UPDATE
+            : BibliotecaConstansUtil.ACTION_ADD;
+
+        this._dialogRef.close({
+            id: this.formEditorial.value.id,
+            editorial: this.formEditorial.value,
+            action: this._action,
+        })
     }
 
     public onEdit(element:any):void {
         this.formEditorial.setValue({
             id: element.id,
-            description: element.description,
+            name: element.name,
         });
     }
 

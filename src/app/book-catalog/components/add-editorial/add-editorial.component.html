@@ -10,18 +10,18 @@
     <mat-dialog-content class="mat-typography">
         <ng-container *ngIf="data">
             <div class="row">
-                <mat-form-field class="w-100" appearance="outline">
+                <mat-form-field style="display: none" class="w-100" appearance="outline">
                     <mat-label>Identificador</mat-label>
                     <input type="text" matInput
                            placeholder="Identificador"
                            formControlName="id">
                 </mat-form-field>
                 <mat-form-field class="w-100" appearance="outline">
-                    <mat-label>Description</mat-label>
-                    <input type="text" matInput
-                           placeholder="Description"
-                           formControlName="description">
-                    <mat-error>Porfavor ingrese descripcion</mat-error>
+                    <mat-label>Nombre</mat-label>
+                    <input appUpper type="text" matInput
+                           placeholder="Nombre"
+                           formControlName="name">
+                    <mat-error>Porfavor, ingrese un nombre</mat-error>
                 </mat-form-field>
             </div>
         </ng-container>
