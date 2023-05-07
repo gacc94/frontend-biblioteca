@@ -1,13 +1,18 @@
 import {AfterViewInit, ChangeDetectorRef, Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {BibliotecaConstansUtil} from "@utils/biblioteca-constans.util";
 import {UpperDirective} from "@directives/input/upper.directive";
+import {CommonModule} from "@angular/common";
+import {SharedModule} from "@shared/shared.module";
+import {MaterialModule} from "@material/material.module";
 
 @Component({
-  selector: 'app-add-editorial',
-  templateUrl: './add-editorial.component.html',
-  styleUrls: ['./add-editorial.component.scss'],
+    selector: 'app-add-editorial',
+    templateUrl: './add-editorial.component.html',
+    styleUrls: ['./add-editorial.component.scss'],
+    standalone: true,
+    imports: [CommonModule,SharedModule, MaterialModule, ReactiveFormsModule, FormsModule],
 })
 export class AddEditorialComponent implements OnInit,AfterViewInit{
 
