@@ -16,8 +16,6 @@ table {
     width: 100%;
 }
 
-
-
 /**
 =====================================================================================================================
 --ESTILOS PARA EL CONTENEDOR DE NUESTRA PAGINA
@@ -55,14 +53,33 @@ table {
 */
 
 /* Estilos generales para todos los botones */
+
 .btn {
-    font-weight: bold;
-    border-radius: 20px;
+    background-color: #ffc107;
+    display: flex;
+    padding: 10px;
+    font-size: 16px;
+    line-height: 10px;
+    font-weight: 300;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    outline: none;
+    cursor: pointer;
 }
 
-/* Estilos para el botón con estilo primario */
-.btn-primary {
-    background-color: #007bff;
+/* Estilos para el botón de confirmacion */
+.btn-confirmation {
+    background-color: #28a745;
+    color: #fff;
+}
+
+/* Estilos para el botón de cancelar */
+.btn-cancel {
+    background-color: #dc3545;
     color: #fff;
 }
 
@@ -75,12 +92,6 @@ table {
 /* Estilos para el botón con estilo de éxito */
 .btn-success {
     background-color: #28a745;
-    color: #fff;
-}
-
-/* Estilos para el botón con estilo de peligro */
-.btn-danger {
-    background-color: #dc3545;
     color: #fff;
 }
 
@@ -357,6 +368,25 @@ h6 {
 
 .mr-5 {
     margin-right: 3rem;
+}
+
+.green-snackbar {
+    background: rgb(65, 252, 134);
+    color: white;
+}
+.green-snackbar button {
+    background-color: rgb(65, 252, 134);
+    color: white;
+    border: none;
+}
+.red-snackbar {
+    background: #f44336;
+    color: white;
+}
+.red-snackbar button {
+    background-color: #f44336;
+    color: white !important;
+    border: none;
 }
 
 .search-div {

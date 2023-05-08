@@ -6,6 +6,8 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import {provideRouter} from "@angular/router";
 import {appRouting} from "./app/app.routing";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatPaginatorIntl} from "@angular/material/paginator";
+import {customMatPaginator} from "@utils/config/library.config";
 
 bootstrapApplication(AppComponent, {
     providers: [
@@ -14,6 +16,10 @@ bootstrapApplication(AppComponent, {
             HttpClientModule,
             FlexLayoutModule,
             BrowserAnimationsModule
-        )
+        ),
+        {
+            provide: MatPaginatorIntl,
+            useValue: customMatPaginator()
+        }
     ]
 }).then(r => r.components);

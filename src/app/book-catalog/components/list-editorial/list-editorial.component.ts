@@ -15,6 +15,9 @@ import {MaterialModule} from "@material/material.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FirstUpperPipe} from "@pipes/first-upper.pipe";
 import {IPage} from "@models/page.model";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {successNotification} from "@utils/config/library.config";
+import {AlertService} from "@services/alert.service";
 
 @Component({
     selector: 'app-list-editorial',
@@ -45,6 +48,8 @@ export class ListEditorialComponent implements OnInit, AfterViewInit, OnDestroy 
     protected subscriptions: Array<Subscription> = [];
 
     constructor(
+        private _alertServ: AlertService,
+        private _snackBar: MatSnackBar,
         private _dialog: MatDialog,
         private _editorialServ: EditorialService,
     ) {
@@ -53,7 +58,7 @@ export class ListEditorialComponent implements OnInit, AfterViewInit, OnDestroy 
     ngOnInit() {
         this.title = 'Catalogo de Libros';
         this.columnsTable = ['id', 'name', 'selected'];
-        console.log(this.listEditorial)
+        console.log(this.listEditorial);
     }
 
     ngAfterViewInit() {
@@ -61,8 +66,8 @@ export class ListEditorialComponent implements OnInit, AfterViewInit, OnDestroy 
         this.matSort.sortChange.subscribe(() => this._matPaginator.pageIndex = 0);
         merge(this.matSort.sortChange, this._matPaginator.page)
             .pipe(
-                startWith(),
                 switchMap((resp: Sort | PageEvent) => {
+                    this.loading('Cargando .....');
                     return this._editorialServ.findByName(
                         this.search ? this.search : '',
                         this._matPaginator.pageIndex,
@@ -70,6 +75,7 @@ export class ListEditorialComponent implements OnInit, AfterViewInit, OnDestroy 
                     );
                 }),
                 map((data: IPage<IEditorial>) => {
+                    this._alertServ.close();
                     this.totalElement = data.totalElements;
                     this._matPaginator.pageIndex = data.number;
                     this._matPaginator.pageSize = data.size;
@@ -111,6 +117,7 @@ export class ListEditorialComponent implements OnInit, AfterViewInit, OnDestroy 
                     if (resp.action === BibliotecaConstansUtil.ACTION_UPDATE) {
                         this.update(resp.editorial, resp.id)
                     } else if (resp.action === BibliotecaConstansUtil.ACTION_ADD) {
+                        this.question(resp.editorial);
                         this.save(resp.editorial)
                     }
                 }
@@ -118,6 +125,7 @@ export class ListEditorialComponent implements OnInit, AfterViewInit, OnDestroy 
     }
 
     public findByName(name: string, page: number, size: number): void {
+        this.loading('Cargando .....');
         this.subscriptions.push(
             this._editorialServ.findByName(name, page, size)
                 .pipe(
@@ -128,6 +136,7 @@ export class ListEditorialComponent implements OnInit, AfterViewInit, OnDestroy 
                 )
                 .subscribe({
                     next: (resp: Array<IEditorial>)=> {
+                        this._alertServ.close();
                         this.listEditorial = resp;
                         // this.dataSource = new MatTableDataSource<IEditorial>(this.listEditorial);
                         // this.dataSource.paginator = this._matPaginator;
@@ -147,7 +156,7 @@ export class ListEditorialComponent implements OnInit, AfterViewInit, OnDestroy 
     public onEraser(): void {
         this.onClearSearch();
         this.onClearListEditorial();
-        this.findByName('', 0, 5);
+        this.findByName('', 0, 10);
     }
 
     public onClearSearch(): void {
@@ -163,8 +172,11 @@ export class ListEditorialComponent implements OnInit, AfterViewInit, OnDestroy 
             this._editorialServ.save(editorial)
                 .subscribe({
                     next: (value): void => {
-                        alert('Se ha registrado con exito');
                         this.findById(value.id);
+                        this._alertServ.notification(
+                            'Se registro correctamente',
+                            BibliotecaConstansUtil.VC_SUCCESS
+                        )
                     },
                     error: (err: HttpErrorResponse): void => {
                         console.log(err);
@@ -206,6 +218,30 @@ export class ListEditorialComponent implements OnInit, AfterViewInit, OnDestroy 
                     }
                 })
         )
+    }
+
+    public success(message: string) {
+        successNotification(message, this._snackBar);
+    }
+
+    public loading(text: string): void {
+        this._alertServ.loading(text);
+    }
+
+    public question(editorial: IEditorial): void {
+        this._alertServ.question(
+            'Desea registrar esta Editorial',
+            '',
+            true,
+            true,
+            'Acepta',
+            'Cancelar')
+            .then((data: boolean) => {
+                console.log(data);
+                if (data) {
+                    this.save(editorial);
+                }
+            });
     }
 
     ngOnDestroy(): void {
