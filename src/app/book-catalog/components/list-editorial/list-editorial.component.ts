@@ -4,7 +4,7 @@ import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {AddEditorialComponent} from "../add-editorial/add-editorial.component";
 import {EditorialService} from "@services/editorial.service";
 import {IEditorial, IEditorialDTO} from "@models/editorial.model";
-import {map, merge, startWith, Subscription, switchMap} from "rxjs";
+import {debounce, debounceTime, map, merge, Observable, startWith, Subscription, switchMap, tap} from "rxjs";
 import {MatSort, Sort} from "@angular/material/sort";
 import {MatPaginator, PageEvent} from "@angular/material/paginator";
 import {HttpErrorResponse} from "@angular/common/http";
@@ -12,7 +12,7 @@ import {BibliotecaConstansUtil} from "@utils/biblioteca-constans.util";
 import {CommonModule} from "@angular/common";
 import {SharedModule} from "@shared/shared.module";
 import {MaterialModule} from "@material/material.module";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FirstUpperPipe} from "@pipes/first-upper.pipe";
 import {IPage} from "@models/page.model";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -46,6 +46,11 @@ export class ListEditorialComponent implements OnInit, AfterViewInit, OnDestroy 
     @ViewChild(MatSort) matSort!: MatSort;
     public editorialDto!: IEditorial;
     protected subscriptions: Array<Subscription> = [];
+    public filterEditorial: Observable<any> = new Observable<any>();
+
+    myControl = new FormControl('');
+    options: Array<IEditorial> = [];
+    filteredOptions: Observable<string[]> = new Observable<string[]>();
 
     constructor(
         private _alertServ: AlertService,
@@ -59,9 +64,27 @@ export class ListEditorialComponent implements OnInit, AfterViewInit, OnDestroy 
         this.title = 'Catalogo de Libros';
         this.columnsTable = ['id', 'name', 'selected'];
         console.log(this.listEditorial);
+
+        this.myControl.valueChanges
+            .pipe(
+                debounceTime(400),
+                startWith(''),
+            ).subscribe({
+            next: (value) => {
+                const val = value?.trim().toLowerCase() ?? '';
+                console.log(val.length);
+                this.findByNameFilter(val);
+            }
+        });
     }
 
-    ngAfterViewInit() {
+    // private _filter(value: string): string[] {
+    //     const filterValue = value.toLowerCase();
+    //
+    //     return this.options.filter(option => option.toLowerCase().includes(filterValue));
+    // }
+
+    ngAfterViewInit(): void {
         this.findByName('', 0, 10)
         this.matSort.sortChange.subscribe(() => this._matPaginator.pageIndex = 0);
         merge(this.matSort.sortChange, this._matPaginator.page)
@@ -242,6 +265,28 @@ export class ListEditorialComponent implements OnInit, AfterViewInit, OnDestroy 
                     this.save(editorial);
                 }
             });
+    }
+
+    public findByNameFilter(name: string) {
+         this._editorialServ.findByName(name, 0,10)
+            .pipe(
+                map((resp: IPage<IEditorial>) => resp.content),
+            ).subscribe({
+                next: (value) => {
+                    this.options = value;
+                }
+            })
+    }
+
+    public onSearchFilter(event: Event): void {
+        const target = (<HTMLInputElement>event.target).value;
+        this._editorialServ.findByName(target, 0, 100)
+            .subscribe({
+                next: value => {
+                }
+            })
+
+        this.filterEditorial.subscribe(value => console.log(value))
     }
 
     ngOnDestroy(): void {
