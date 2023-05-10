@@ -37,5 +37,8 @@ export class EditorialService {
     public findById(id: number): Observable<IEditorial> {
         return this._http.get<IEditorial>(`${environment.urlBase}/editorials/${id}`);
     }
+    public delete(id: number): Observable<any> {
+        return this._http.delete(`${environment.urlBase}/editorials/${id}`);
+    }
 
 }

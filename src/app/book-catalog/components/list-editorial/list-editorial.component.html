@@ -105,7 +105,8 @@
                         (click)="create(element)">
                     <mat-icon svgIcon="edit"></mat-icon>
                 </button>
-                <button mat-icon-button matTooltip="Eliminar">
+                <button mat-icon-button matTooltip="Eliminar"
+                        (click)="onConfirmDelete(element.id)">
                     <mat-icon svgIcon="delete"></mat-icon>
                 </button>
             </td>

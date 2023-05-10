@@ -289,6 +289,35 @@ export class ListEditorialComponent implements OnInit, AfterViewInit, OnDestroy 
         this.filterEditorial.subscribe(value => console.log(value))
     }
 
+    public delete(id: number): void {
+        this._editorialServ.delete(id)
+            .subscribe({
+                next: (value) => {
+                    console.log(value);
+                    this.findByName('', 0, 10);
+                    this._alertServ.notification('Se elimino con exito', BibliotecaConstansUtil.VC_SUCCESS);
+                }
+            })
+    }
+
+    public onConfirmDelete(id: number): void {
+        this._alertServ.question(
+            'Desea Eliminar esta Editorial',
+            '',
+            true,
+            true,
+            'Acepta',
+            'Cancelar')
+            .then((data: boolean) => {
+                console.log(data);
+                if (data) {
+                    // this.save(editorial);
+                    this.delete(id);
+                }
+            });
+
+    }
+
     ngOnDestroy(): void {
         this.subscriptions.forEach((subs: Subscription) => subs.unsubscribe());
         console.log(this.subscriptions);
