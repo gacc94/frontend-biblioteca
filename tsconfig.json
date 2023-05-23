@@ -21,7 +21,6 @@
         "useDefineForClassFields": false,
         "paths": {
             "@env*": ["src/environments*"],
-//            "@service/*": ["src/app/service/*"],
 //            "@interface/*": ["src/app/core/interface*"],
             "@auth*": ["src/app/auth*"],
             "@core*": ["src/app/core*"],
@@ -32,6 +31,8 @@
             "@services*": ["src/app/services*"],
             "@utils*": ["src/app/utils*"],
             "@directives*": ["src/app/directives*"],
+            "@material*": ["src/app/material*"],
+            "@pipes*": ["src/app/pipes*"],
         },
         "lib": [
             "ES2022",
