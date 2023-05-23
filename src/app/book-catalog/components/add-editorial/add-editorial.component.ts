@@ -6,6 +6,7 @@ import {UpperDirective} from "@directives/input/upper.directive";
 import {CommonModule} from "@angular/common";
 import {SharedModule} from "@shared/shared.module";
 import {MaterialModule} from "@material/material.module";
+import {validatorPasswordMatch} from "@utils/validators/validator";
 
 @Component({
     selector: 'app-add-editorial',
@@ -30,7 +31,7 @@ export class AddEditorialComponent implements OnInit,AfterViewInit{
         console.log(this.data)
         this.formEditorial = this._fb.group({
             id   : [''],
-            name : ['', [Validators.required]],
+            name : ['', [Validators.required], validatorPasswordMatch()],
         })
     }
 
